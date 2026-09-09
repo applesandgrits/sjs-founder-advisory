@@ -12,38 +12,30 @@ GitHub Pages from the `main` branch.
 
 ## Before it goes to a real audience
 
-Three things are still placeholders.
-
-### 1. Contact address
+### Contact address
 
 `index.html` currently points at `hello@sjscollective.com`. Search for `mailto:`
 and replace it with the real address, or swap the whole `<a>` for a Calendly /
 Tally link.
 
-### 2. Photos
+### Photo captions
 
-The page has three image slots holding grey captioned placeholders:
+The photos are in place, but two captions are written only from what is visible
+in the frame, because the exact events were not confirmed:
 
-| Location | Class | Crop |
-|----------|-------|------|
-| Hero, right column | `.photo` | 3:2 |
-| Above the three sessions | `.photo.wide` | 21:9 |
-| About section | `.photo.portrait` | 4:5 |
+- Hero — "On a panel at the NYU Entrepreneurial Institute." Taken from the
+  banners behind her.
+- Wide band — "In the audience at an NYU Stern event." Taken from her name badge.
 
-To fill one: upload the JPGs into a `photos/` folder (same Add file → Upload
-files flow), then in `index.html` replace the placeholder div
+If you know the actual event and date, put them in.
 
-```html
-<div class="ph"><span>Photo: NYU Entrepreneurs Festival</span></div>
-```
+### Layout switcher
 
-with an image
-
-```html
-<img src="photos/festival.jpg" alt="Stephanie Shyu speaking at the NYU Entrepreneurs Festival">
-```
-
-The CSS already handles cropping and aspect ratio — no other change needed.
+A floating control at the bottom right switches between three layouts: Current,
+Ledger and Cards. It is a preview tool for choosing a direction, not a shipping
+feature. Once a direction is picked, fold its rules into the base styles and
+delete the preview block in the `<style>`, the `.lswitch` rules, the `.lswitch`
+markup and the two small scripts. All four are marked with comments.
 
 ---
 
@@ -63,11 +55,31 @@ The CSS already handles cropping and aspect ratio — no other change needed.
 
 ---
 
+## Photos
+
+| Slot | File | Delivered crop |
+|------|------|----------------|
+| Hero, right column | `photos/panel-nyu.jpg` | 3:2, 1400×933 |
+| Above the three sessions | `photos/audience-nyu-stern.jpg` | 21:9, 1620×694 |
+| About section | `photos/stephanie-shyu.jpg` | 1:1, 712×712, rendered round |
+
+Each file is cropped to exactly the ratio its slot renders at, so `object-fit`
+never has to crop further and the framing is what you see here. To swap one,
+match the ratio and keep the `width`/`height` attributes on the `<img>` in sync
+so the page reserves the right space while the image loads.
+
+The about portrait is a circular studio headshot. The file is the circle's
+bounding box and the CSS rounds it with `border-radius`, so a replacement should
+either be another circular crop or a square one that reads well as a circle.
+
+---
+
 ## Files
 
 | File | Purpose |
 |------|---------|
 | `index.html` | The entire site — markup plus the CSS in one `<style>` block |
+| `photos/` | The three photographs, cropped and compressed for the web |
 | `404.html` | Not-found page, same type and palette |
 | `favicon.svg` | Tab icon: two lines converging into one |
 | `robots.txt`, `sitemap.xml` | Search indexing |
@@ -81,8 +93,9 @@ third-party requests at all.
 ## Design notes
 
 - **Palette** — spruce ink `#14231F` on a cool paper `#EDEFEA`, ochre accent
-  `#C2761A`, chartreuse highlighter `#CEDE6E`. A full dark-mode palette follows
-  the visitor's OS setting.
+  `#C2761A`, chartreuse highlighter `#CEDE6E`. Light only: the page declares
+  `color-scheme: light` so it renders the same whatever the visitor's OS is set
+  to.
 - **Type** — Newsreader (display and the prework questions), Archivo (body and
   UI), IBM Plex Mono (labels, session numbers, rates).
 - **Structure** — the session numbering is real sequence, not decoration: each
