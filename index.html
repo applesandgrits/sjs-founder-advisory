@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SJS Founder Advisory &mdash; Stephanie Shyu</title>
-<meta name="description" content="The Founder Clarity Sprint: three working sessions for early-stage founding teams on cofounder alignment, equity, customer validation and a 60-90 day roadmap. Advisory from Stephanie Shyu.">
+<meta name="description" content="Three working sessions for early-stage cofounders: alignment, equity, customer validation and a 60-90 day roadmap. Advisory from Stephanie Shyu.">
 <link rel="canonical" href="https://applesandgrits.github.io/sjs-founder-advisory/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#EDEFEA" media="(prefers-color-scheme: light)">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SJS Founder Advisory">
 <meta property="og:title" content="SJS Founder Advisory &mdash; Stephanie Shyu">
-<meta property="og:description" content="The Founder Clarity Sprint: three working sessions for early-stage founding teams on cofounder alignment, equity, customer validation and a 60-90 day roadmap. Advisory from Stephanie Shyu.">
+<meta property="og:description" content="Three working sessions for early-stage cofounders: alignment, equity, customer validation and a 60-90 day roadmap. Advisory from Stephanie Shyu.">
 <meta property="og:url" content="https://applesandgrits.github.io/sjs-founder-advisory/">
 <meta property="og:image" content="https://applesandgrits.github.io/sjs-founder-advisory/og.png">
 <meta property="og:image:width" content="1200">
@@ -100,13 +100,13 @@ header.bar{
   border-bottom:1px solid var(--rule);
 }
 .bar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
-.brand{display:flex;align-items:baseline;gap:9px;font-family:var(--f-display);font-size:1.06rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+.brand{display:flex;align-items:baseline;gap:9px;font-family:var(--f-display);font-size:1.06rem;letter-spacing:-.01em;color:var(--ink);text-decoration:none;white-space:nowrap}
 .brand b{font-weight:600}
 .brand em{font-style:italic;color:var(--ink-3);font-size:.9rem}
 .bar-nav{display:flex;align-items:center;gap:22px}
 .bar-nav a{font-size:.85rem;color:var(--ink-2);text-decoration:none}
 .bar-nav a:hover{color:var(--accent-ink)}
-@media (max-width:720px){.bar-nav .hide-sm{display:none}}
+@media (max-width:720px){.bar-nav .hide-sm,.brand em{display:none}}
 
 .btn{
   display:inline-flex;align-items:center;gap:8px;
@@ -119,6 +119,8 @@ header.bar{
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule-strong)}
 .btn.ghost:hover{background:var(--surface);color:var(--ink);border-color:var(--ink)}
 .btn.sm{padding:8px 14px;font-size:.83rem}
+.bar-nav a.btn{color:var(--paper)}
+.bar-nav a.btn:hover{color:#FFF8EC}
 
 /* photos */
 .photo{margin:0;display:grid;gap:8px}
@@ -127,6 +129,7 @@ header.bar{
 .photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1px solid var(--rule)}
 .photo.wide .ph,.photo.wide img{aspect-ratio:21/9;object-position:50% 35%}
 .photo figcaption{font-size:.8rem;color:var(--ink-3)}
+.photo.wide{margin-bottom:40px}
 .photo.portrait .ph,.photo.portrait img{aspect-ratio:4/5;object-position:60% 30%}
 
 /* hero */
@@ -134,7 +137,7 @@ header.bar{
 .hero-grid{display:grid;gap:36px}
 @media (min-width:900px){.hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:center}}
 .hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1.06;max-width:16ch}
-.hero .lede{margin-top:22px;max-width:56ch;font-size:1.06rem;color:var(--ink-2)}
+.hero .lede{margin-top:22px;max-width:48ch;font-size:1.06rem;color:var(--ink-2)}
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .hero .kicker{margin-bottom:18px}
 
@@ -150,8 +153,8 @@ header.bar{
 .creds .c b{color:var(--ink-2);font-weight:500}
 
 /* sections */
-section{padding:clamp(52px,7vw,84px) 0;border-top:1px solid var(--rule)}
-.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:clamp(30px,4vw,44px)}
+section{padding:clamp(48px,6.5vw,76px) 0;border-top:1px solid var(--rule)}
+.sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:clamp(26px,4vw,40px)}
 .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
 .sec-head p{max-width:58ch;color:var(--ink-2)}
 
@@ -237,7 +240,9 @@ section{padding:clamp(52px,7vw,84px) 0;border-top:1px solid var(--rule)}
 }
 
 /* add-ons */
-.opts{display:grid;gap:0 40px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));margin-top:6px}
+.addons{margin-top:clamp(40px,5vw,56px);padding-top:clamp(28px,4vw,40px);border-top:1px solid var(--rule)}
+.addons h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:8px}
+.opts{display:grid;gap:0 40px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));margin-top:16px}
 .opt{border-top:1px solid var(--rule);padding:20px 0 6px}
 .opt h3{font-size:1.25rem;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .opt h3 span{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase}
@@ -250,16 +255,16 @@ section{padding:clamp(52px,7vw,84px) 0;border-top:1px solid var(--rule)}
 .price-grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .price{border:1px solid var(--rule);padding:26px;background:var(--surface)}
 .price.lead{border-color:var(--ink)}
-.price .amt{font-family:var(--f-display);font-size:3rem;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.price .amt sup{font-size:1.1rem;top:-1.35em;position:relative;margin-right:1px;color:var(--ink-3)}
-.price .amt small{font-size:1rem;font-family:var(--f-body);color:var(--ink-3);letter-spacing:0}
-.price h3{font-size:1.18rem;margin-bottom:14px}
+.price .amt{display:flex;align-items:baseline;gap:6px;font-family:var(--f-display);font-size:3rem;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.price .amt .cur{font-size:1.3rem;color:var(--ink-3);letter-spacing:0}
+.price .amt small{font-size:.95rem;font-family:var(--f-body);color:var(--ink-3);letter-spacing:0}
+.price h3{font-size:1.18rem;margin-bottom:16px}
 .price ul{margin:16px 0 0;padding-left:0;list-style:none;display:grid;gap:8px;font-size:.94rem;color:var(--ink-2)}
 .price li{padding-left:18px;position:relative}
 .price li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--accent)}
 
 /* programs */
-.prog{display:grid;gap:0 32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.prog{display:grid;gap:0 32px;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
 .prog div{padding:18px 0;border-top:1px solid var(--rule)}
 .prog h3{font-family:var(--f-body);font-size:.98rem;font-weight:600;margin-bottom:6px}
 .prog p{color:var(--ink-2);font-size:.94rem}
@@ -274,6 +279,8 @@ section{padding:clamp(52px,7vw,84px) 0;border-top:1px solid var(--rule)}
 .role .yr{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
 .role .org{font-family:var(--f-display);font-style:italic;color:var(--accent-ink);font-size:.98rem}
 .role p{color:var(--ink-2);font-size:.93rem;margin-top:4px;max-width:56ch}
+.about .kicker{margin-bottom:14px}
+.about .photo{margin-bottom:22px;max-width:360px}
 .about h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
 .about .bio{margin-top:18px;color:var(--ink-2);max-width:52ch}
 .about .bio + .bio{margin-top:12px}
@@ -284,6 +291,7 @@ section{padding:clamp(52px,7vw,84px) 0;border-top:1px solid var(--rule)}
 @media (min-width:860px){.contact-in{grid-template-columns:minmax(0,1fr) minmax(0,auto);align-items:end}}
 .contact h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
 .contact p{color:var(--ink-2);max-width:52ch;margin-top:14px}
+.contact .actions{display:flex;flex-wrap:wrap;gap:12px}
 
 footer{padding:30px 0 44px;border-top:1px solid var(--rule)}
 .foot-in{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;align-items:baseline}
@@ -311,7 +319,7 @@ footer small{color:var(--ink-3);font-size:.79rem}
     <div>
     <p class="mono kicker">Advisory for early-stage founding teams</p>
     <h1>Make the <span class="mark"><span>implicit explicit</span></span> between cofounders.</h1>
-    <p class="lede">The Founder Clarity Sprint is a three-session advisory engagement for early-stage teams. It puts roles, time commitments, equity and what you still have to prove in writing &mdash; with each founder answering the hard questions on their own before anyone negotiates in the room.</p>
+    <p class="lede">Three working sessions that put roles, commitments, equity and what you still have to prove in writing. Each founder answers the hard questions alone first, so nobody negotiates on the spot.</p>
     <div class="cta">
       <a class="btn" href="#contact">Book the Clarity Sprint</a>
       <a class="btn ghost" href="#sprint">See the sessions</a>
@@ -319,14 +327,14 @@ footer small{color:var(--ink-3);font-size:.79rem}
     </div>
     <figure class="photo">
       <div class="ph"><span>Photo: NYU Entrepreneurs Festival</span></div>
-      <figcaption>Opening the NYU Entrepreneurs Festival, NYU Stern Berkley Center for Entrepreneurship.</figcaption>
+      <figcaption>Opening the NYU Entrepreneurs Festival at NYU Stern.</figcaption>
     </figure>
    </div>
     <div class="creds">
       <span class="c"><b>NYU Stern</b> &middot; Berkley Center for Entrepreneurship</span>
       <span class="c"><b>AdmitSee</b> &middot; Founder &amp; CEO</span>
       <span class="c"><b>Pioneer Fund</b> &middot; Venture Partner</span>
-      <span class="c"><b>The SJS Collective</b> &middot; Organizational development</span>
+      <span class="c"><b>The SJS Collective</b> &middot; Founder</span>
     </div>
   </div>
 
@@ -338,15 +346,15 @@ footer small{color:var(--ink-3);font-size:.79rem}
       <div class="signals">
         <div class="signal">
           <h3>Cofounders with no founder agreement.</h3>
-          <p>You&rsquo;ve been building on a handshake. Roles are assumed, the split has never been said out loud, and nobody wants to be the one to bring it up.</p>
+          <p>You&rsquo;re building on a handshake. Roles are assumed, the split has never been said out loud, and nobody wants to bring it up.</p>
         </div>
         <div class="signal">
           <h3>Teams that can&rsquo;t agree on what traction means.</h3>
-          <p>Everyone is busy. Nobody can name the result that would show this is working, or the one that would show it isn&rsquo;t.</p>
+          <p>Everyone is busy, but nobody can name the result that would prove this is working.</p>
         </div>
         <div class="signal">
           <h3>Founders who haven&rsquo;t settled how big a bet this is.</h3>
-          <p>Side project, lifestyle business, or venture-scale company. Each founder may be assuming a different answer, and the answer drives equity, funding and the next twelve months.</p>
+          <p>Side project, lifestyle business or venture-scale company. Each founder may assume a different answer, and that answer drives equity, funding and the next twelve months.</p>
         </div>
       </div>
     </div>
@@ -356,15 +364,15 @@ footer small{color:var(--ink-3);font-size:.79rem}
     <div class="wrap">
       <div class="sec-head">
         <h2>The Founder Clarity Sprint</h2>
-        <p>A focused advisory engagement for early-stage founders: cofounder alignment, customer validation, defining what traction means for this company, and the next steps.</p>
+        <p>Independent prework, then three sessions in order: alignment, equity and validation, roadmap. Each one builds on what the last settled.</p>
       </div>
 
       <dl class="meta">
-        <div><dt>Core engagement</dt><dd class="num">3 sessions &times; 75&ndash;90 min</dd></div>
+        <div><dt>Sessions</dt><dd class="num">3 &times; 75&ndash;90 min</dd></div>
         <div><dt>Cadence</dt><dd class="num">1&ndash;2 weeks apart</dd></div>
         <div><dt>Format</dt><dd>In person or Zoom</dd></div>
-        <div><dt>Between sessions</dt><dd>Async follow-up as needed</dd></div>
-        <div><dt>Optional</dt><dd>Legal &amp; funding strategy</dd></div>
+        <div><dt>Between sessions</dt><dd>Async follow-up</dd></div>
+        <div><dt>Add-ons</dt><dd>Legal, funding strategy</dd></div>
       </dl>
     </div>
   </section>
@@ -372,59 +380,58 @@ footer small{color:var(--ink-3);font-size:.79rem}
   <section id="prework">
     <div class="wrap">
       <div class="sec-head">
-        <span class="mono">Session 0 &middot; Async prework</span>
-        <h2>Before session one, each founder answers alone.</h2>
-        <p>Session 0 is done independently, before the engagement starts. Nobody negotiates on the spot or talks themselves into someone else&rsquo;s answer. You each arrive with what you actually think already written down, and the working sessions start from the differences.</p>
+        <span class="mono">Session 0 &middot; Prework</span>
+        <h2>Each founder answers alone first.</h2>
+        <p>Before session one, every founder writes down their own answers. You arrive with what you think on paper, and the sessions start from the differences.</p>
       </div>
 
       <div class="sheet-intro">
-        <span class="stamp">Completed independently &middot; one per founder</span>
-        <span class="mono">Founder roles &amp; company vision-casting</span>
+        <span class="stamp">One worksheet per founder</span>
       </div>
 
       <div class="sheets">
         <div class="sheet">
           <h3>Vision</h3>
           <ul>
-            <li>What do we think we&rsquo;re building? Who are we serving?</li>
-            <li>What does &ldquo;success&rdquo; look like in X years? Is there an X after which I&rsquo;d no longer want to work on this?</li>
-            <li>Is this a side project, a lifestyle business, or a venture-scale startup? Do I know what I want it to be at this stage?</li>
+            <li>What are we building, and for whom?</li>
+            <li>What does success look like in X years? Is there an X after which I&rsquo;d no longer want to work on this?</li>
+            <li>Is this a side project, a lifestyle business or a venture-scale startup?</li>
           </ul>
         </div>
         <div class="sheet">
           <h3>Commitment</h3>
           <ul>
-            <li>How much time can and will I commit over the next 12 months?</li>
-            <li>What financial resources am I willing to contribute? What am I giving up or risking to pursue this?</li>
-            <li>Under what circumstances would I consider going full-time?</li>
-            <li>What needs to go right by the end of the year for me to ratchet my involvement up, down, or hold it where it is?</li>
-            <li>What happens if the company starts requiring substantially more commitment?</li>
+            <li>How much time will I commit over the next 12 months?</li>
+            <li>What money am I willing to put in? What am I giving up or risking?</li>
+            <li>Under what circumstances would I go full-time?</li>
+            <li>What needs to go right this year for me to step up, step back or hold steady?</li>
+            <li>What happens if the company needs substantially more from me?</li>
           </ul>
         </div>
         <div class="sheet">
           <h3>Founder role</h3>
           <ul>
             <li>What role do I want? What am I uniquely positioned to contribute?</li>
-            <li>What responsibilities do I expect the other founders to own?</li>
-            <li>What decisions do I think I should have authority over?</li>
-            <li>Who wants to be the CEO? What does that role mean to this team?</li>
-            <li>What needs to be decided together, and what by an individual founder?</li>
+            <li>What do I expect the other founders to own?</li>
+            <li>What decisions should I have authority over?</li>
+            <li>Who wants to be CEO? What does that role mean to this team?</li>
+            <li>What do we decide together, and what does one founder decide alone?</li>
           </ul>
         </div>
         <div class="sheet">
           <h3>Equity &amp; expectations</h3>
           <ul>
-            <li>What split do I currently think is fair, and why?</li>
+            <li>What split do I think is fair, and why?</li>
             <li>What would make an equity arrangement feel unfair?</li>
             <li>What happens if one founder&rsquo;s contribution changes materially?</li>
-            <li>What am I most worried will go wrong between the founders?</li>
+            <li>What am I most worried will go wrong between us?</li>
           </ul>
         </div>
       </div>
 
       <div class="outcome">
         <span class="mono">Outcome</span>
-        <p>A shared vision for the company, founder commitments and roles, and the questions that need to be resolved before determining equity.</p>
+        <p>A shared vision, each founder&rsquo;s commitment and role, and the open questions to settle before equity.</p>
       </div>
     </div>
   </section>
@@ -432,10 +439,9 @@ footer small{color:var(--ink-3);font-size:.79rem}
   <section id="sessions">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Three working sessions, in order.</h2>
-        <p>Alignment first, then equity, then validation and the roadmap. Each session builds on what the previous one settled and what you learned in between.</p>
+        <h2>Three working sessions</h2>
       </div>
-      <figure class="photo wide" style="margin-bottom:40px">
+      <figure class="photo wide">
         <div class="ph"><span>Photo: NYU Entrepreneurial Institute panel</span></div>
         <figcaption>On a panel at the NYU Entrepreneurial Institute.</figcaption>
       </figure>
@@ -445,15 +451,15 @@ footer small{color:var(--ink-3);font-size:.79rem}
         <article class="session">
           <div class="s-rail"><span class="n num">1</span><span class="lbl">Alignment</span></div>
           <div>
-            <h3>Founder &amp; company vision alignment</h3>
+            <h3>Founder &amp; company alignment</h3>
             <ul>
-              <li>Clarify founder goals, expected time and resource commitments, roles and responsibilities.</li>
-              <li>Identify where you&rsquo;re aligned, what&rsquo;s still open, and which decisions need to be documented.</li>
-              <li>Work through an approach to equity allocation that reflects the founders&rsquo; circumstances and anticipated contributions.</li>
+              <li>Compare goals, time and resource commitments, roles and responsibilities.</li>
+              <li>Mark what&rsquo;s agreed, what&rsquo;s open, and what needs to be written down.</li>
+              <li>Agree an approach to equity that reflects each founder&rsquo;s circumstances and expected contribution.</li>
             </ul>
             <div class="outcome">
               <span class="mono">Deliverable</span>
-              <p>A founder decision framework, plus agreed points on roles and commitments to formally document in a founder agreement.</p>
+              <p>A founder decision framework and agreed terms on roles and commitments, ready for a founder agreement.</p>
             </div>
           </div>
         </article>
@@ -461,27 +467,27 @@ footer small{color:var(--ink-3);font-size:.79rem}
         <article class="session">
           <div class="s-rail"><span class="n num">2</span><span class="lbl">Equity + validation</span></div>
           <div>
-            <h3>Founder equity &amp; customer validation</h3>
+            <h3>Equity &amp; customer validation</h3>
             <div class="part">
-              <div class="ptitle">Part 1 &mdash; Equity structure</div>
+              <div class="ptitle">Part 1 &mdash; Equity</div>
               <ul>
-                <li>Equity allocation across the founding team.</li>
-                <li>Vesting timeline, including what happens when a commitment changes.</li>
+                <li>Equity split across the founding team.</li>
+                <li>Vesting, including what happens when a commitment changes.</li>
                 <li>Founder agreement terms, and incorporation if needed.</li>
               </ul>
             </div>
             <div class="part">
-              <div class="ptitle">Part 2 &mdash; What&rsquo;s proven and what remains to be proven</div>
+              <div class="ptitle">Part 2 &mdash; Validation</div>
               <ul>
-                <li>Pressure-test the current customer, problem and market assumptions.</li>
-                <li>Identify the highest-risk assumptions that need evidence.</li>
-                <li>Define what meaningful validation looks like at the company&rsquo;s current stage. What does &ldquo;traction&rdquo; specifically mean for this company?</li>
-                <li>Design focused customer conversations and experiments that generate evidence against what the team has decided must be true by year end.</li>
+                <li>Pressure-test current customer, problem and market assumptions.</li>
+                <li>Identify the riskiest assumptions that need evidence.</li>
+                <li>Define what traction means for this company at this stage.</li>
+                <li>Design customer conversations and experiments to test what must be true by year end.</li>
               </ul>
             </div>
             <div class="outcome">
               <span class="mono">Deliverable</span>
-              <p>A prioritized validation plan and a clearer definition of the traction signals specific to your growth trajectory.</p>
+              <p>A prioritized validation plan and a definition of traction specific to this company.</p>
             </div>
           </div>
         </article>
@@ -489,60 +495,57 @@ footer small{color:var(--ink-3);font-size:.79rem}
         <article class="session">
           <div class="s-rail"><span class="n num">3</span><span class="lbl">Roadmap</span></div>
           <div>
-            <h3>Milestone &amp; roadmap definition</h3>
+            <h3>Milestones &amp; roadmap</h3>
             <ul>
-              <li>Review what the founders have learned from customer conversations and experiments.</li>
-              <li>Assess evidence of demand and early traction; identify what&rsquo;s still uncertain.</li>
-              <li>Define 60&ndash;90 day milestones based on each founder&rsquo;s functional area.</li>
-              <li>Is there evidence that people will pay? What does the business need to look like to be economically viable?</li>
-              <li>Discuss how the founders&rsquo; commitment might evolve based on those milestones.</li>
+              <li>Review what customer conversations and experiments showed.</li>
+              <li>Weigh the evidence of demand, and whether people will pay, against what&rsquo;s still unknown.</li>
+              <li>Set 60&ndash;90 day milestones by founder and function.</li>
+              <li>Decide how each founder&rsquo;s commitment changes as milestones are hit or missed.</li>
             </ul>
             <div class="ptitle" style="margin-top:22px">Decision points</div>
             <dl class="fork">
-              <div><dt>Double down</dt><dd>What would cause us to accelerate?</dd></div>
-              <div><dt>Change direction</dt><dd>What would cause us to change course?</dd></div>
-              <div><dt>Stop</dt><dd>What would cause us to stop?</dd></div>
+              <div><dt>Double down</dt><dd>What would make us accelerate?</dd></div>
+              <div><dt>Change direction</dt><dd>What would make us pivot?</dd></div>
+              <div><dt>Stop</dt><dd>What would make us stop?</dd></div>
             </dl>
             <div class="outcome">
               <span class="mono">Deliverable</span>
-              <p>A validation plan and a 60&ndash;90 day &ldquo;prove it&rdquo; roadmap.</p>
+              <p>A 60&ndash;90 day &ldquo;prove it&rdquo; roadmap.</p>
             </div>
           </div>
         </article>
 
       </div>
 
-      <div style="margin-top:48px">
-        <div class="sec-head" style="margin-bottom:14px">
-          <h2 style="font-size:clamp(1.4rem,2.6vw,1.9rem)">Optional add-on sessions</h2>
-        </div>
+      <div class="addons">
+        <h2>Optional add-ons</h2>
         <div class="opts">
           <div class="opt">
             <h3>Legal highlights <span>Session 4</span></h3>
             <ul>
-              <li>Walk through the founder agreement templates and provisions available through Cooley GO and Orrick&rsquo;s startup portal.</li>
-              <li>Map the founders&rsquo; agreed equity, vesting, roles and commitments to the relevant provisions.</li>
-              <li>Identify the questions, ambiguities and issues to raise with counsel, and other incorporation and documentation considerations.</li>
+              <li>Walk through founder agreement templates from Cooley GO and Orrick.</li>
+              <li>Map your agreed equity, vesting, roles and commitments to the relevant provisions.</li>
+              <li>List the questions to raise with counsel, plus incorporation and documentation to-dos.</li>
             </ul>
             <div class="outcome">
               <span class="mono">Deliverable</span>
-              <p>Founders know which clauses to pull from boilerplate and which to customize, and what to prioritize at this stage.</p>
+              <p>You know which clauses to keep from boilerplate, which to customize, and what matters now.</p>
             </div>
           </div>
           <div class="opt">
             <h3>Funding strategy <span>Session 5</span></h3>
             <ul>
-              <li>The type of business you&rsquo;re building, and the capital required to launch, accelerate or scale it.</li>
-              <li>Whether venture funding is compatible with the company&rsquo;s economics and growth profile, against the tradeoffs of bootstrapping, customer-funded growth, grants, strategic capital or outside investment.</li>
-              <li>A sustainable path to growth, and the type of investment and investor suited to this business.</li>
+              <li>What kind of business this is, and the capital it takes to launch, accelerate or scale.</li>
+              <li>Whether venture funding fits the economics, versus bootstrapping, customer-funded growth, grants or strategic capital.</li>
+              <li>Which type of investment and investor suits this business.</li>
             </ul>
             <div class="outcome">
               <span class="mono">Deliverable</span>
-              <p>A funding path that fits the business, and a clear view of which investors to approach, if any.</p>
+              <p>A funding path that fits the business, and a short list of investors to approach, if any.</p>
             </div>
           </div>
         </div>
-        <p class="note">This is founder advising, not legal, tax or investment advice. The legal session prepares you to work with counsel; it doesn&rsquo;t replace them.</p>
+        <p class="note">This is founder advising, not legal, tax or investment advice. The legal session prepares you to work with counsel, not replace them.</p>
       </div>
     </div>
   </section>
@@ -550,23 +553,23 @@ footer small{color:var(--ink-3);font-size:.79rem}
   <section id="pricing">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Package rate</h2>
-        <p>Early-stage founder advisory rate. Optional sessions can be added before, during or after the core sprint.</p>
+        <h2>Pricing</h2>
+        <p>Add-on sessions can be booked at any point.</p>
       </div>
       <div class="price-grid">
         <div class="price lead">
           <h3>Founder Clarity Sprint</h3>
-          <div class="amt"><sup>$</sup>750</div>
+          <div class="amt"><span class="cur">$</span>750</div>
           <ul>
-            <li>Three core sessions, 75&ndash;90 minutes each</li>
-            <li>Session 0 prework for every founder</li>
+            <li>Three sessions, 75&ndash;90 minutes each</li>
+            <li>Prework worksheet for every founder</li>
             <li>Async follow-up between sessions</li>
             <li>In person or Zoom</li>
           </ul>
         </div>
         <div class="price">
-          <h3>Optional session</h3>
-          <div class="amt"><sup>$</sup>250 <small>per session</small></div>
+          <h3>Add-on session</h3>
+          <div class="amt"><span class="cur">$</span>250 <small>each</small></div>
           <ul>
             <li>Legal highlights</li>
             <li>Funding strategy</li>
@@ -581,24 +584,24 @@ footer small{color:var(--ink-3);font-size:.79rem}
       <div class="sec-head">
         <span class="mono">For universities, accelerators &amp; venture programs</span>
         <h2>Entrepreneurship program design</h2>
-        <p>Program design draws on more than three years leading programming at NYU Stern&rsquo;s Berkley Center for Entrepreneurship: developing learning programs, overseeing startup advising for early and mid-stage entrepreneurs, and running the summer accelerator.</p>
+        <p>Built on three years running programming at NYU Stern&rsquo;s Berkley Center for Entrepreneurship, including startup advising and the summer accelerator.</p>
       </div>
       <div class="prog">
         <div>
           <h3>Learning programs</h3>
-          <p>Curriculum and session design for early and mid-stage founders, from a single workshop to a multi-week program.</p>
+          <p>Curriculum and session design, from a single workshop to a multi-week program.</p>
         </div>
         <div>
           <h3>Startup advising</h3>
-          <p>Setting up an advising or office-hours model: who advises, how founders are matched, and what advisors are accountable for.</p>
+          <p>An advising or office-hours model: who advises, how founders are matched, and what advisors owe.</p>
         </div>
         <div>
           <h3>Accelerators</h3>
-          <p>Cohort structure, milestones and evaluation for a summer or semester-length accelerator.</p>
+          <p>Cohort structure, milestones and evaluation for a summer or semester-length program.</p>
         </div>
         <div>
           <h3>Founder workshops</h3>
-          <p>Cofounder alignment, equity, validation and team communication, run for a cohort rather than one team at a time.</p>
+          <p>Alignment, equity, validation and team communication, run for a cohort.</p>
         </div>
       </div>
     </div>
@@ -607,33 +610,34 @@ footer small{color:var(--ink-3);font-size:.79rem}
   <section id="about">
     <div class="wrap about">
       <div>
-        <figure class="photo portrait" style="margin-bottom:22px;max-width:360px">
+        <p class="mono kicker">About</p>
+        <figure class="photo portrait">
           <div class="ph"><span>Photo: NYU Stern</span></div>
         </figure>
         <h2>Stephanie Shyu</h2>
-        <p class="bio">Stephanie founded and ran AdmitSee for eight years, led programming at NYU Stern&rsquo;s Berkley Center for Entrepreneurship for more than three years, and has been a venture partner at Pioneer Fund since 2018. Through The SJS Collective she consults on leadership and team development for founders and executive teams.</p>
-        <p class="bio">The advising draws on all of it: what it&rsquo;s like to be the founder making these decisions, what investors actually look for, and what hundreds of advising conversations with early-stage teams have in common.</p>
+        <p class="bio">Stephanie founded and ran AdmitSee for eight years, led programming at NYU Stern&rsquo;s Berkley Center for Entrepreneurship, and has been a venture partner at Pioneer Fund since 2018. Through The SJS Collective she advises founders and executive teams on leadership and team development.</p>
+        <p class="bio">She has sat on both sides of the table: as the founder making these decisions, and as the investor and advisor watching hundreds of teams make them.</p>
       </div>
       <div class="roles">
         <div class="role">
-          <div class="rt"><h3>Organizational Development Consultant</h3><span class="yr num">2022 &ndash; present</span></div>
+          <div class="rt"><h3>Founder</h3><span class="yr num">2022 &ndash; present</span></div>
           <div class="org">The SJS Collective</div>
-          <p>Transformational leadership and organizational consulting, including DEIA training, team coaching and interpersonal communication workshops, for startup founders, executive leaders and tech teams.</p>
+          <p>Leadership and organizational consulting for founders, executives and tech teams: team coaching, communication workshops and DEIA training.</p>
         </div>
         <div class="role">
           <div class="rt"><h3>Associate Director, Berkley Center for Entrepreneurship</h3><span class="yr num">2022 &ndash; 2026</span></div>
           <div class="org">New York University</div>
-          <p>As director of programming, led the development of learning programs and oversaw startup advising for early and mid-stage entrepreneurs. Ran NYU Stern&rsquo;s startup summer accelerator.</p>
+          <p>Led learning programs and startup advising for early and mid-stage founders. Ran NYU Stern&rsquo;s summer accelerator.</p>
         </div>
         <div class="role">
           <div class="rt"><h3>Venture Partner</h3><span class="yr num">2018 &ndash; present</span></div>
           <div class="org">Pioneer Fund</div>
-          <p>Evaluates and advises early-stage companies in consumer, e-commerce, education, job and career services, and marketplaces, with an interest in disrupting barriers to access.</p>
+          <p>Evaluates and advises early-stage companies in consumer, e-commerce, education, careers and marketplaces.</p>
         </div>
         <div class="role">
           <div class="rt"><h3>Founder &amp; CEO</h3><span class="yr num">2014 &ndash; 2022</span></div>
           <div class="org">AdmitSee</div>
-          <p>A peer-to-peer marketplace of crowdsourced college application files and student advice: the first and largest database of quantitative and qualitative admissions insights for students, parents and counselors.</p>
+          <p>A marketplace of crowdsourced college application files and advice, and the largest database of admissions insights for students, parents and counselors.</p>
         </div>
       </div>
     </div>
@@ -643,9 +647,9 @@ footer small{color:var(--ink-3);font-size:.79rem}
     <div class="wrap contact-in">
       <div>
         <h2>Get in touch</h2>
-        <p>Send a short note about the company, who the cofounders are, and what you&rsquo;re trying to decide. You&rsquo;ll get a reply on whether the sprint is the right fit.</p>
+        <p>Send a short note on the company, the cofounders, and what you&rsquo;re trying to decide. You&rsquo;ll hear back on whether the sprint is a fit.</p>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:12px">
+      <div class="actions">
         <a class="btn" href="mailto:hello@sjscollective.com?subject=Founder%20Clarity%20Sprint%20inquiry&amp;body=Company%3A%0ACofounders%3A%0AStage%3A%0AWhat%20we%27re%20trying%20to%20decide%3A%0A">Email about the Sprint</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/stephjshyu/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
