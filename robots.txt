@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://applesandgrits.github.io/sjs-founder-advisory/sitemap.xml
