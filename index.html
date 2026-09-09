@@ -94,13 +94,13 @@ header.bar{
 
 /* photos */
 .photo{margin:0;display:grid;gap:8px}
-.photo .ph{aspect-ratio:3/2;background:var(--surface-2);border:1px solid var(--rule);display:grid;place-items:center;padding:16px;text-align:center}
-.photo .ph span{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
-.photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1px solid var(--rule)}
-.photo.wide .ph,.photo.wide img{aspect-ratio:21/9;object-position:50% 35%}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border:1px solid var(--rule);background:var(--surface-2)}
 .photo figcaption{font-size:.8rem;color:var(--ink-3)}
+.photo.wide img{aspect-ratio:21/9}
 .photo.wide{margin-bottom:40px}
-.photo.portrait .ph,.photo.portrait img{aspect-ratio:4/5;object-position:60% 30%}
+/* the headshot is a circular studio crop, so it is rendered round rather
+   than boxed; the source square is exactly the circle's bounding box */
+.photo.round img{aspect-ratio:1;border-radius:50%;border-color:transparent}
 
 /* hero */
 .hero{padding:clamp(52px,8vw,96px) 0 clamp(38px,5vw,58px)}
@@ -252,7 +252,7 @@ section{padding:clamp(48px,6.5vw,76px) 0;border-top:1px solid var(--rule)}
 .role .org{font-family:var(--f-display);font-style:italic;color:var(--accent-ink);font-size:.98rem}
 .role p{color:var(--ink-2);font-size:.93rem;margin-top:4px;max-width:56ch}
 .about .kicker{margin-bottom:14px}
-.about .photo{margin-bottom:22px;max-width:360px}
+.about .photo{margin-bottom:22px;max-width:320px}
 .about h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
 .about .bio{margin-top:18px;color:var(--ink-2);max-width:52ch}
 .about .bio + .bio{margin-top:12px}
@@ -291,7 +291,6 @@ footer small{color:var(--ink-3);font-size:.79rem}
     --bleed:calc((100vw - var(--col))/2);
     width:calc(100% + var(--bleed));max-width:none;
   }
-  [data-layout="ledger"] .hero-grid .photo .ph,
   [data-layout="ledger"] .hero-grid .photo img{aspect-ratio:auto;height:clamp(310px,40vw,440px);border-right:0}
   [data-layout="ledger"] .hero-grid .photo figcaption{padding-right:calc(var(--bleed) + 4px)}
 }
@@ -346,10 +345,8 @@ footer small{color:var(--ink-3);font-size:.79rem}
 [data-layout="cards"] header.bar{border-bottom:0}
 [data-layout="cards"] .btn,
 [data-layout="cards"] .stamp{border-radius:999px}
-[data-layout="cards"] .photo .ph,
 [data-layout="cards"] .photo img{border-radius:14px;border-color:transparent}
-/* keep placeholders legible on both the white and the tinted panels */
-[data-layout="cards"] .photo .ph{background:#E7DED1}
+[data-layout="cards"] .photo.round img{border-radius:50%}
 
 [data-layout="cards"] section{border-top:0;padding:clamp(8px,1.4vw,14px) 0}
 [data-layout="cards"] section > .wrap{
@@ -451,8 +448,9 @@ footer small{color:var(--ink-3);font-size:.79rem}
     </div>
     </div>
     <figure class="photo">
-      <div class="ph"><span>Photo: NYU Entrepreneurs Festival</span></div>
-      <figcaption>Opening the NYU Entrepreneurs Festival at NYU Stern.</figcaption>
+      <img src="photos/panel-nyu.jpg" width="1400" height="933" decoding="async"
+           alt="Stephanie Shyu speaking into a microphone on a panel, in front of NYU Entrepreneurial Institute banners.">
+      <figcaption>On a panel at the NYU Entrepreneurial Institute.</figcaption>
     </figure>
    </div>
     <div class="creds">
@@ -567,8 +565,9 @@ footer small{color:var(--ink-3);font-size:.79rem}
         <h2>Three working sessions</h2>
       </div>
       <figure class="photo wide">
-        <div class="ph"><span>Photo: NYU Entrepreneurial Institute panel</span></div>
-        <figcaption>On a panel at the NYU Entrepreneurial Institute.</figcaption>
+        <img src="photos/audience-nyu-stern.jpg" width="1620" height="694" loading="lazy" decoding="async"
+             alt="Stephanie Shyu seated in an auditorium audience, wearing an NYU Stern name badge.">
+        <figcaption>In the audience at an NYU Stern event.</figcaption>
       </figure>
 
       <div class="sessions">
@@ -735,8 +734,9 @@ footer small{color:var(--ink-3);font-size:.79rem}
     <div class="wrap about">
       <div>
         <p class="mono kicker">About</p>
-        <figure class="photo portrait">
-          <div class="ph"><span>Photo: NYU Stern</span></div>
+        <figure class="photo round">
+          <img src="photos/stephanie-shyu.jpg" width="712" height="712" loading="lazy" decoding="async"
+               alt="Stephanie Shyu.">
         </figure>
         <h2>Stephanie Shyu</h2>
         <p class="bio">Stephanie founded and ran AdmitSee for eight years, led programming at NYU Stern&rsquo;s Berkley Center for Entrepreneurship, and has been a venture partner at Pioneer Fund since 2018. Through The SJS Collective she advises founders and executive teams on leadership and team development.</p>
