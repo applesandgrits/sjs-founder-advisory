@@ -18,6 +18,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="fonts.css">
+<script>try{var l=localStorage.getItem('sjs-layout');if(l==='ledger'||l==='cards')document.documentElement.setAttribute('data-layout',l)}catch(e){}</script>
 <style>
 :root{
   --paper:#EDEFEA;
@@ -180,14 +181,14 @@ section{padding:clamp(48px,6.5vw,76px) 0;border-top:1px solid var(--rule)}
 
 /* sessions */
 .session{
-  display:grid;grid-template-columns:minmax(0,1fr);gap:10px 40px;
+  display:grid;grid-template-columns:minmax(0,1fr);gap:12px 40px;
   padding:34px 0;border-top:1px solid var(--rule);
 }
 .session:first-child{border-top:0}
 .s-rail{display:flex;flex-direction:row;align-items:baseline;gap:12px}
 .s-rail .n{font-family:var(--f-display);font-size:2.6rem;line-height:.9;color:var(--accent);font-variant-numeric:tabular-nums}
 .s-rail .lbl{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.session h3{font-size:1.5rem;margin-bottom:12px}
+.session h3{font-size:1.5rem;margin-bottom:0}
 .session ul{margin:0;padding-left:0;list-style:none;display:grid;gap:9px}
 .session li{position:relative;padding-left:20px;color:var(--ink-2);max-width:62ch}
 .session li::before{content:"";position:absolute;left:2px;top:.66em;width:7px;height:1px;background:var(--rule-strong)}
@@ -196,7 +197,9 @@ section{padding:clamp(48px,6.5vw,76px) 0;border-top:1px solid var(--rule)}
 .ptitle{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:8px}
 @media (min-width:820px){
   .session{grid-template-columns:minmax(0,170px) minmax(0,1fr)}
-  .s-rail{flex-direction:column;gap:6px;position:sticky;top:76px;align-self:start}
+  .s-rail{flex-direction:column;gap:6px;position:sticky;top:76px;align-self:start;grid-column:1;grid-row:1/span 2}
+  .s-title{grid-column:2}
+  .s-body{grid-column:2}
 }
 
 /* decision points */
@@ -265,6 +268,159 @@ section{padding:clamp(48px,6.5vw,76px) 0;border-top:1px solid var(--rule)}
 footer{padding:30px 0 44px;border-top:1px solid var(--rule)}
 .foot-in{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;align-items:baseline}
 footer small{color:var(--ink-3);font-size:.79rem}
+/* ══════════════════════════════════════════════════════════════════
+   LAYOUT PREVIEW LAYERS
+   Two alternative directions layered over the base design. Neither is
+   active until the switcher sets data-layout on <html>. To ship one
+   direction, fold its rules into the base and delete this block plus
+   the .lswitch rules, markup and scripts.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ---------- DIRECTION 1 · LEDGER -------------------------------- */
+/* Open paper, hairline rules, no boxes. Rows read as a document. */
+
+[data-layout="ledger"] .hero{padding-bottom:clamp(30px,4vw,44px)}
+/* clips the sliver left by the scrollbar's share of 100vw; unlike
+   overflow:hidden this keeps the sticky header working */
+[data-layout="ledger"] body{overflow-x:clip}
+@media (min-width:900px){
+  [data-layout="ledger"] .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:clamp(30px,4vw,56px)}
+  [data-layout="ledger"] .hero-grid .photo{
+    /* gap from the container edge out to the viewport edge. .hero resets
+       .wrap's inline padding to 0, so no padding term belongs here. */
+    --bleed:calc((100vw - var(--col))/2);
+    width:calc(100% + var(--bleed));max-width:none;
+  }
+  [data-layout="ledger"] .hero-grid .photo .ph,
+  [data-layout="ledger"] .hero-grid .photo img{aspect-ratio:auto;height:clamp(310px,40vw,440px);border-right:0}
+  [data-layout="ledger"] .hero-grid .photo figcaption{padding-right:calc(var(--bleed) + 4px)}
+}
+
+[data-layout="ledger"] .meta{border:0;background:none;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule)}
+[data-layout="ledger"] .meta div{padding:15px 24px 15px 0;border-right:0}
+
+/* worksheets become rule-separated rows, matching "Who this is for" */
+[data-layout="ledger"] .sheets{display:block;border-top:1px solid var(--rule)}
+[data-layout="ledger"] .sheet{
+  background:none;background-image:none;border:0;border-bottom:1px solid var(--rule);
+  padding:20px 0;display:grid;gap:6px 32px;
+}
+[data-layout="ledger"] .sheet h3{
+  font-family:var(--f-display);font-size:1.18rem;font-style:italic;font-weight:400;
+  letter-spacing:0;margin-bottom:0;
+}
+[data-layout="ledger"] .sheet li{border-bottom:0;padding:3px 0;font-size:.98rem}
+@media (min-width:760px){
+  [data-layout="ledger"] .sheet{grid-template-columns:minmax(0,28ch) minmax(0,1fr)}
+}
+
+/* sessions as three-column ledger rows: numeral · title · body */
+@media (min-width:900px){
+  [data-layout="ledger"] .session{
+    grid-template-columns:minmax(0,86px) minmax(0,1.02fr) minmax(0,1.32fr);
+    gap:0 clamp(22px,2.8vw,40px);padding:30px 0;
+  }
+  [data-layout="ledger"] .s-rail{position:static;grid-column:1;grid-row:1;gap:4px}
+  [data-layout="ledger"] .s-rail .n{font-size:2.1rem}
+  [data-layout="ledger"] .s-title{grid-column:2;grid-row:1;font-size:1.42rem}
+  [data-layout="ledger"] .s-body{grid-column:3;grid-row:1}
+}
+
+[data-layout="ledger"] .price{border:0;background:none;border-top:2px solid var(--rule-strong);padding:22px 0 0}
+[data-layout="ledger"] .price.lead{border-top-color:var(--accent)}
+[data-layout="ledger"] .price-grid{gap:28px 44px}
+
+[data-layout="ledger"] .contact{background:none;border-top:1px solid var(--ink)}
+
+/* ---------- DIRECTION 2 · CARDS --------------------------------- */
+/* Warm cream ground, each section held in a rounded panel. */
+
+[data-layout="cards"]{
+  --paper:#F6F2EA;
+  --surface:#FFFFFF;
+  --surface-2:#F1EBE0;
+  --rule:#E5DCCD;
+  --rule-strong:#CDBFA9;
+  --grid:rgba(20,35,31,.04);
+}
+[data-layout="cards"] header.bar{border-bottom:0}
+[data-layout="cards"] .btn,
+[data-layout="cards"] .stamp{border-radius:999px}
+[data-layout="cards"] .photo .ph,
+[data-layout="cards"] .photo img{border-radius:14px;border-color:transparent}
+/* keep placeholders legible on both the white and the tinted panels */
+[data-layout="cards"] .photo .ph{background:#E7DED1}
+
+[data-layout="cards"] section{border-top:0;padding:clamp(8px,1.4vw,14px) 0}
+[data-layout="cards"] section > .wrap{
+  background:var(--surface);border-radius:22px;
+  padding:clamp(30px,4vw,52px) clamp(20px,3.4vw,44px);
+}
+[data-layout="cards"] .hero{padding-bottom:clamp(30px,4vw,48px)}
+[data-layout="cards"] .creds{border-top-color:var(--rule)}
+
+[data-layout="cards"] .meta{border-radius:14px;overflow:hidden;background:var(--surface-2);border-color:transparent}
+[data-layout="cards"] .meta div{border-right-color:var(--rule)}
+
+[data-layout="cards"] .sheet{
+  border-radius:16px;border-color:transparent;background:var(--surface-2);background-image:none;
+  padding:22px 22px 10px;
+}
+
+/* sessions as stacked, softly tinted panels */
+[data-layout="cards"] .session{
+  border-top:0;border-radius:20px;background:var(--surface-2);
+  padding:clamp(22px,3vw,34px);margin-bottom:16px;
+}
+[data-layout="cards"] .session:nth-child(2){background:#EDEFE6}
+[data-layout="cards"] .session:nth-child(3){background:#F4EBDF}
+[data-layout="cards"] .s-rail{position:static}
+[data-layout="cards"] .sessions{margin-bottom:8px}
+[data-layout="cards"] .addons{border-top-color:var(--rule)}
+
+/* pricing as one split panel */
+[data-layout="cards"] .price-grid{
+  gap:0;background:var(--surface-2);border-radius:20px;overflow:hidden;
+  grid-template-columns:minmax(0,1fr);
+}
+[data-layout="cards"] .price{border:0;background:none;padding:clamp(26px,3vw,38px)}
+@media (min-width:760px){
+  [data-layout="cards"] .price-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)}
+  [data-layout="cards"] .price + .price{border-left:1px solid var(--rule)}
+}
+
+/* bio sits in its own panel beside the portrait */
+[data-layout="cards"] .about > div:first-child{
+  background:var(--surface-2);border-radius:20px;padding:clamp(24px,3vw,34px);
+}
+
+[data-layout="cards"] .contact{background:none}
+[data-layout="cards"] .contact > .wrap{background:#EFE4D3}
+[data-layout="cards"] footer{border-top:0}
+
+/* ---------- preview switcher ------------------------------------ */
+.lswitch{
+  position:fixed;right:16px;bottom:16px;z-index:60;
+  display:flex;align-items:center;gap:2px;
+  background:#F8F9F5;border:1px solid #B9C3B6;border-radius:999px;padding:4px;
+  box-shadow:0 3px 16px rgba(20,35,31,.13);
+}
+.lswitch .lbl{
+  font-family:var(--f-mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;
+  color:#6D817A;padding:0 8px 0 11px;
+}
+.lswitch button{
+  font-family:var(--f-body);font-size:.78rem;font-weight:500;line-height:1;
+  color:#3E524C;background:none;border:0;border-radius:999px;padding:7px 13px;cursor:pointer;
+}
+.lswitch button:hover{color:#14231F}
+.lswitch button[aria-pressed="true"]{background:#14231F;color:#F8F9F5}
+@media (max-width:560px){
+  .lswitch{right:10px;bottom:10px}
+  .lswitch .lbl{display:none}
+  .lswitch button{padding:7px 11px;font-size:.74rem}
+}
+@media print{.lswitch{display:none}}
 </style>
 </head>
 <body>
@@ -419,8 +575,8 @@ footer small{color:var(--ink-3);font-size:.79rem}
 
         <article class="session">
           <div class="s-rail"><span class="n num">1</span><span class="lbl">Alignment</span></div>
-          <div>
-            <h3>Founder &amp; company alignment</h3>
+          <h3 class="s-title">Founder &amp; company alignment</h3>
+          <div class="s-body">
             <ul>
               <li>Compare goals, time and resource commitments, roles and responsibilities.</li>
               <li>Mark what&rsquo;s agreed, what&rsquo;s open, and what needs to be written down.</li>
@@ -435,16 +591,15 @@ footer small{color:var(--ink-3);font-size:.79rem}
 
         <article class="session">
           <div class="s-rail"><span class="n num">2</span><span class="lbl">Equity + validation</span></div>
-          <div>
-            <h3>Equity &amp; customer validation</h3>
+          <h3 class="s-title">Equity &amp; customer validation</h3>
+          <div class="s-body">
             <div class="part">
               <div class="ptitle">Part 1 &mdash; Equity</div>
               <ul>
                 <li>Equity split across the founding team.</li>
                 <li>Vesting, including what happens when a commitment changes.</li>
                 <li>Founder agreement terms, and incorporation if needed.</li>
-              </ul>
-            </div>
+              </ul>          </div>
             <div class="part">
               <div class="ptitle">Part 2 &mdash; Validation</div>
               <ul>
@@ -463,8 +618,8 @@ footer small{color:var(--ink-3);font-size:.79rem}
 
         <article class="session">
           <div class="s-rail"><span class="n num">3</span><span class="lbl">Roadmap</span></div>
-          <div>
-            <h3>Milestones &amp; roadmap</h3>
+          <h3 class="s-title">Milestones &amp; roadmap</h3>
+          <div class="s-body">
             <ul>
               <li>Review what customer conversations and experiments showed.</li>
               <li>Weigh the evidence of demand, and whether people will pay, against what&rsquo;s still unknown.</li>
@@ -633,5 +788,27 @@ footer small{color:var(--ink-3);font-size:.79rem}
     <small>Founder advising, not legal, tax or investment advice.</small>
   </div>
 </footer>
+<!-- Layout preview switcher — remove together with the preview layers once a direction is chosen. -->
+<div class="lswitch" role="group" aria-label="Layout preview">
+  <span class="lbl">Layout</span>
+  <button type="button" data-set="base">Current</button>
+  <button type="button" data-set="ledger">Ledger</button>
+  <button type="button" data-set="cards">Cards</button>
+</div>
+<script>
+(function(){
+  var root=document.documentElement,KEY='sjs-layout',OK=['base','ledger','cards'];
+  var btns=Array.prototype.slice.call(document.querySelectorAll('.lswitch button'));
+  function apply(v){
+    if(v==='base'){root.removeAttribute('data-layout')}else{root.setAttribute('data-layout',v)}
+    btns.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-set')===v?'true':'false')});
+    try{localStorage.setItem(KEY,v)}catch(e){}
+  }
+  var saved='base';
+  try{saved=localStorage.getItem(KEY)||'base'}catch(e){}
+  apply(OK.indexOf(saved)>-1?saved:'base');
+  btns.forEach(function(b){b.addEventListener('click',function(){apply(b.getAttribute('data-set'))})});
+})();
+</script>
 </body>
 </html>
