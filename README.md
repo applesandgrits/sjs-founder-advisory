@@ -10,32 +10,33 @@ GitHub Pages from the `main` branch.
 
 ---
 
-## Before it goes to a real audience
+## Outstanding before it goes to a real audience
 
-### Contact address
+### 1. The three photos
 
-`index.html` currently points at `hello@sjscollective.com`. Search for `mailto:`
-and replace it with the real address, or swap the whole `<a>` for a Calendly /
-Tally link.
+`index.html` has three image slots currently holding "Photo to come" placeholders,
+because the photos weren't in the refinement bundle. Each placeholder keeps the
+exact aspect ratio and background the real photo will have, so dropping the images
+in changes nothing else about the layout.
 
-### Photo captions
+| Where | Expected file | Aspect | Notes |
+|-------|---------------|--------|-------|
+| Hero, right column | `photos/panel-nyu.jpg` | 3:3.9 | Speaking on a panel; crop `object-position:38% 34%` |
+| Above the three sessions | `photos/audience-nyu-stern.jpg` | 21:9 | Seated in the auditorium |
+| About section | `photos/stephanie-shyu.jpg` | 1:1 | Circular crop |
 
-The photos are in place, but two captions are written only from what is visible
-in the frame, because the exact events were not confirmed:
+To fill one, replace the placeholder `<div role="img" …>` with the original image tag:
 
-- Hero — "On a panel at the NYU Entrepreneurial Institute." Taken from the
-  banners behind her.
-- Wide band — "In the audience at an NYU Stern event." Taken from her name badge.
+```html
+<img src="photos/panel-nyu.jpg" width="1400" height="933" decoding="async"
+     alt="Stephanie Shyu speaking into a microphone on a panel."
+     style="display:block;width:100%;height:auto;aspect-ratio:3/3.9;object-fit:cover;object-position:38% 34%;background:#EDE6DB">
+```
 
-If you know the actual event and date, put them in.
+### 2. Contact address
 
-### Layout switcher
-
-A floating control at the bottom right switches between three layouts: Current,
-Ledger and Cards. It is a preview tool for choosing a direction, not a shipping
-feature. Once a direction is picked, fold its rules into the base styles and
-delete the preview block in the `<style>`, the `.lswitch` rules, the `.lswitch`
-markup and the two small scripts. All four are marked with comments.
+`index.html` points at `hello@sjscollective.com`. Search for `mailto:` and replace
+it with the real address, or swap the whole `<a>` for a Calendly / Tally link.
 
 ---
 
@@ -49,28 +50,9 @@ markup and the two small scripts. All four are marked with comments.
    | CNAME | `advisory` | `applesandgrits.github.io`  |
 
 3. Tick **Enforce HTTPS** once the certificate is issued (usually minutes).
-4. Then find-and-replace `https://applesandgrits.github.io/sjs-founder-advisory`
-   with `https://advisory.sjscollective.com` across `index.html`, `robots.txt`
-   and `sitemap.xml` — those three carry the absolute canonical and social URLs.
-
----
-
-## Photos
-
-| Slot | File | Delivered crop |
-|------|------|----------------|
-| Hero, right column | `photos/panel-nyu.jpg` | 3:2, 1400×933 |
-| Above the three sessions | `photos/audience-nyu-stern.jpg` | 21:9, 1620×694 |
-| About section | `photos/stephanie-shyu.jpg` | 1:1, 712×712, rendered round |
-
-Each file is cropped to exactly the ratio its slot renders at, so `object-fit`
-never has to crop further and the framing is what you see here. To swap one,
-match the ratio and keep the `width`/`height` attributes on the `<img>` in sync
-so the page reserves the right space while the image loads.
-
-The about portrait is a circular studio headshot. The file is the circle's
-bounding box and the CSS rounds it with `border-radius`, so a replacement should
-either be another circular crop or a square one that reads well as a circle.
+4. Find-and-replace `https://applesandgrits.github.io/sjs-founder-advisory` with
+   the new origin across `index.html`, `robots.txt` and `sitemap.xml` — those carry
+   the absolute canonical and social-preview URLs.
 
 ---
 
@@ -78,29 +60,28 @@ either be another circular crop or a square one that reads well as a circle.
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The entire site — markup plus the CSS in one `<style>` block |
-| `photos/` | The three photographs, cropped and compressed for the web |
-| `404.html` | Not-found page, same type and palette |
-| `favicon.svg` | Tab icon: two lines converging into one |
-| `robots.txt`, `sitemap.xml` | Search indexing |
+| `index.html` | The entire site — markup with inline styles |
+| `404.html` | Not-found page |
+| `logos/` | NYU Stern Berkley Center, AdmitSee, Pioneer Fund, The SJS Collective |
 | `og.png` | 1200×630 link-preview card for LinkedIn, Slack, iMessage |
 | `fonts.css` + `fonts/` | Self-hosted Newsreader, Archivo, IBM Plex Mono (latin subsets) |
+| `favicon.svg` | Tab icon: two lines converging into one |
+| `robots.txt`, `sitemap.xml` | Search indexing |
 | `.nojekyll` | Tells Pages to serve files as-is, no Jekyll processing |
 
-Fonts are self-hosted rather than pulled from Google, so the page makes no
-third-party requests at all.
+The three main faces are self-hosted. Architects Daughter — used for the
+handwritten annotation accents — is the one font still loaded from Google Fonts,
+and so the page's only third-party request.
 
 ## Design notes
 
-- **Palette** — spruce ink `#14231F` on a cool paper `#EDEFEA`, ochre accent
-  `#C2761A`, chartreuse highlighter `#CEDE6E`. Light only: the page declares
-  `color-scheme: light` so it renders the same whatever the visitor's OS is set
-  to.
-- **Type** — Newsreader (display and the prework questions), Archivo (body and
-  UI), IBM Plex Mono (labels, session numbers, rates).
+- **Palette** — warm paper `#F7F3ED`, near-black ink `#16130F`, rust accent
+  `#B03A13` with `#8F2F0E` for text-safe links, sand surfaces `#EAE3D7` / `#EDE6DB`.
+  Single light theme by design (`color-scheme: light`); there is no dark palette.
+- **Type** — Newsreader (display), Archivo (body and UI), IBM Plex Mono (labels,
+  session numbers, rates), Architects Daughter (annotations).
 - **Structure** — the session numbering is real sequence, not decoration: each
-  working session depends on what the previous one settled. The prework
-  worksheets are deliberately unnumbered, since founders answer them in any
-  order.
+  working session depends on what the previous one settled. The prework worksheets
+  are deliberately unnumbered, since founders answer them in any order.
 
 Session content and pricing come from the Founder Clarity Sprint proposal.
