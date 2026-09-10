@@ -12,28 +12,7 @@ GitHub Pages from the `main` branch.
 
 ## Outstanding before it goes to a real audience
 
-### 1. The three photos
-
-`index.html` has three image slots currently holding "Photo to come" placeholders,
-because the photos weren't in the refinement bundle. Each placeholder keeps the
-exact aspect ratio and background the real photo will have, so dropping the images
-in changes nothing else about the layout.
-
-| Where | Expected file | Aspect | Notes |
-|-------|---------------|--------|-------|
-| Hero, right column | `photos/panel-nyu.jpg` | 3:3.9 | Speaking on a panel; crop `object-position:38% 34%` |
-| Above the three sessions | `photos/audience-nyu-stern.jpg` | 21:9 | Seated in the auditorium |
-| About section | `photos/stephanie-shyu.jpg` | 1:1 | Circular crop |
-
-To fill one, replace the placeholder `<div role="img" …>` with the original image tag:
-
-```html
-<img src="photos/panel-nyu.jpg" width="1400" height="933" decoding="async"
-     alt="Stephanie Shyu speaking into a microphone on a panel."
-     style="display:block;width:100%;height:auto;aspect-ratio:3/3.9;object-fit:cover;object-position:38% 34%;background:#EDE6DB">
-```
-
-### 2. Contact address
+### Contact address
 
 `index.html` points at `hello@sjscollective.com`. Search for `mailto:` and replace
 it with the real address, or swap the whole `<a>` for a Calendly / Tally link.
@@ -62,6 +41,7 @@ it with the real address, or swap the whole `<a>` for a Calendly / Tally link.
 |------|---------|
 | `index.html` | The entire site — markup with inline styles |
 | `404.html` | Not-found page |
+| `photos/` | Panel, auditorium and portrait shots used in the hero, sessions band and About |
 | `logos/` | NYU Stern Berkley Center, AdmitSee, Pioneer Fund, The SJS Collective |
 | `og.png` | 1200×630 link-preview card for LinkedIn, Slack, iMessage |
 | `fonts.css` + `fonts/` | Self-hosted Newsreader, Archivo, IBM Plex Mono (latin subsets) |
