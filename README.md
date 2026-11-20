@@ -1,67 +1,82 @@
-# SJS Founder Advisory
+# Stephanie Shyu
 
-Marketing site for **SJS Founder Advisory** — Stephanie Shyu's early-stage founder
-advising practice and the Founder Clarity Sprint.
+Personal and professional site for Stephanie Shyu. The homepage covers all five
+practices. The SJS Founder Advisory page (the Founder Clarity Sprint) lives at
+`/advisory/`.
 
-One static HTML page. No build step, no dependencies, no framework. Served by
-GitHub Pages from the `main` branch.
+Static HTML and CSS. No build step, no dependencies, no framework. Served by GitHub
+Pages from the `main` branch.
 
 **Live:** https://applesandgrits.github.io/sjs-founder-advisory/
+&nbsp;·&nbsp; **Advisory:** https://applesandgrits.github.io/sjs-founder-advisory/advisory/
 
 ---
 
 ## Outstanding before it goes to a real audience
 
-### Contact address
+- **Contact address.** `index.html` and `advisory/index.html` both point at
+  `hello@sjscollective.com`, a placeholder. Note the consulting site's domain is
+  `thesjscollective.com`. Search for `mailto:` and replace it with the real address,
+  or with a Calendly or Tally link.
+- **Facts to confirm.** Confirm these before launch:
+  - MBA status: The SJS Collective lists it as pending.
+  - Which NYU school the capstone course is in, and its start term. The page says
+    "Upcoming" and "New York University".
+  - Yoga details. stephshyu.yoga couldn't be read while this was built, so the yoga
+    section uses what the other sites say: 200-hour RYT in vinyasa and restorative,
+    Three Sisters Yoga, and Insight and Dzogchen meditation. It sends visitors to
+    stephshyu.yoga for the schedule.
 
-`index.html` points at `hello@sjscollective.com`. Search for `mailto:` and replace
-it with the real address, or swap the whole `<a>` for a Calendly / Tally link.
+---
+
+## Structure
+
+| Path | What it is |
+|------|------------|
+| `index.html` | Homepage: hero, the five practices, advising, authentic relating, yoga & meditation, teaching & building, writing, about, contact |
+| `site.css` | Styles for the homepage |
+| `advisory/index.html` | SJS Founder Advisory, the Founder Clarity Sprint (inline styles, unchanged apart from paths and a link home) |
+| `advisory/og.png` | Link-preview card for the advisory page |
+| `og.png` | 1200×630 link-preview card for the homepage |
+| `404.html` | Not-found page. Uses absolute `/sjs-founder-advisory/` paths, which GitHub Pages needs for a 404 page |
+| `photos/`, `logos/` | Shared images |
+| `fonts.css` + `fonts/` | Self-hosted Newsreader, Archivo, IBM Plex Mono |
+| `favicon.svg`, `robots.txt`, `sitemap.xml`, `.nojekyll` | Site plumbing |
+
+### Where the homepage content comes from
+
+| Section | Source |
+|---------|--------|
+| Startup advising | The Founder Clarity Sprint (`/advisory/`), plus the About and FAQ pages at thesjscollective.com: offerings, engagement types, who she works with, testimonials |
+| Authentic relating | Her entry in the ART International certified-facilitator directory |
+| Yoga & meditation | thesjscollective.com/about and the essay "Jack of All Trades, Master of Self" |
+| Teaching & building | The advisory page's career history, plus the upcoming NYU adjunct course |
+| Writing | The Steph Press (stephanieshyu.wordpress.com) and Medium (@sjshyu) |
+
+To add a post, copy an `<li>` in the `#writing` section of `index.html`.
 
 ---
 
 ## Pointing a custom domain at it
 
-1. Repo **Settings → Pages → Custom domain**, enter e.g. `advisory.sjscollective.com`
-2. At the DNS registrar, add:
-
-   | Type  | Name       | Value                       |
-   |-------|------------|-----------------------------|
-   | CNAME | `advisory` | `applesandgrits.github.io`  |
-
-3. Tick **Enforce HTTPS** once the certificate is issued (usually minutes).
-4. Find-and-replace `https://applesandgrits.github.io/sjs-founder-advisory` with
-   the new origin across `index.html`, `robots.txt` and `sitemap.xml` — those carry
-   the absolute canonical and social-preview URLs.
+1. Repo **Settings → Pages → Custom domain**: enter e.g. `stephanieshyu.com`.
+2. At the DNS registrar, point the domain at GitHub Pages. For an apex domain, use
+   the four `A` records in GitHub's docs. For a subdomain, use a `CNAME` to
+   `applesandgrits.github.io`.
+3. Tick **Enforce HTTPS** once the certificate is issued.
+4. Find-and-replace `https://applesandgrits.github.io/sjs-founder-advisory` with the
+   new origin across `index.html`, `advisory/index.html`, `robots.txt` and
+   `sitemap.xml`. In `404.html`, replace `/sjs-founder-advisory/` with `/`.
 
 ---
 
-## Files
-
-| File | Purpose |
-|------|---------|
-| `index.html` | The entire site — markup with inline styles |
-| `404.html` | Not-found page |
-| `photos/` | Panel, auditorium and portrait shots used in the hero, sessions band and About |
-| `logos/` | NYU Stern Berkley Center, AdmitSee, Pioneer Fund, The SJS Collective |
-| `og.png` | 1200×630 link-preview card for LinkedIn, Slack, iMessage |
-| `fonts.css` + `fonts/` | Self-hosted Newsreader, Archivo, IBM Plex Mono (latin subsets) |
-| `favicon.svg` | Tab icon: two lines converging into one |
-| `robots.txt`, `sitemap.xml` | Search indexing |
-| `.nojekyll` | Tells Pages to serve files as-is, no Jekyll processing |
-
-The three main faces are self-hosted. Architects Daughter — used for the
-handwritten annotation accents — is the one font still loaded from Google Fonts,
-and so the page's only third-party request.
-
 ## Design notes
 
-- **Palette** — warm paper `#F7F3ED`, near-black ink `#16130F`, rust accent
-  `#B03A13` with `#8F2F0E` for text-safe links, sand surfaces `#EAE3D7` / `#EDE6DB`.
-  Single light theme by design (`color-scheme: light`); there is no dark palette.
-- **Type** — Newsreader (display), Archivo (body and UI), IBM Plex Mono (labels,
-  session numbers, rates), Architects Daughter (annotations).
-- **Structure** — the session numbering is real sequence, not decoration: each
-  working session depends on what the previous one settled. The prework worksheets
-  are deliberately unnumbered, since founders answer them in any order.
-
-Session content and pricing come from the Founder Clarity Sprint proposal.
+- **Palette:** warm paper `#F7F3ED`, ink `#16130F`, rust accent `#B03A13`
+  (`#8F2F0E` for text links), sand `#EAE3D7`. The yoga section switches to a
+  night band (`#1F1A15`) with a lighter terracotta (`#E08A62`) to mark the shift
+  from work to practice. Light theme only, by design.
+- **Type:** Newsreader (display), Archivo (body), IBM Plex Mono (labels and
+  numbering), Architects Daughter (the one handwritten note in the hero).
+- **Numbering:** the five practices are numbered 01–05 in the hero index and
+  in each section's kicker, so the index works as navigation.
