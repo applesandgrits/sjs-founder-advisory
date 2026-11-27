@@ -1,37 +1,60 @@
-# SJS Founder Advisory
+# Steph Shyu
 
-Marketing site for **SJS Founder Advisory** — Stephanie Shyu's early-stage founder
-advising practice and the Founder Clarity Sprint.
+Personal site for Steph Shyu (Stephanie Shyu): one home page with two halves.
 
-One static HTML page. No build step, no dependencies, no framework. Served by
-GitHub Pages from the `main` branch.
+| Path | Page | Theme |
+|------|------|-------|
+| `/` | Home: who Steph is, both halves, ventures, selected writing | Ink |
+| `/advisory/` | SJS Founder Advisory and the Founder Clarity Sprint | Plum |
+| `/still-life/` | Still Life: Authentic Relating, writing, meditation (2027) | Moss |
+| `/about/` | Story and career path | Ink |
 
-**Live:** https://applesandgrits.github.io/sjs-founder-advisory/
+Static HTML. No build step, no dependencies, no framework. Served by GitHub Pages
+from the `main` branch.
+
+**Live (until the domain moves):** https://applesandgrits.github.io/sjs-founder-advisory/
+
+All internal links are relative, so the site works both under the GitHub Pages
+project path and at the root of a custom domain.
 
 ---
 
-## Outstanding before it goes to a real audience
+## Before it goes to a real audience
 
-### Contact address
-
-`index.html` points at `hello@sjscollective.com`. Search for `mailto:` and replace
-it with the real address, or swap the whole `<a>` for a Calendly / Tally link.
+1. **Contact address.** Every page uses `hello@sjscollective.com`, which is still a
+   placeholder. Search for `sjscollective.com` and replace it, or swap the
+   buttons for a Calendly / Tally link.
+2. **Draft copy to review.** These lines were written for Steph and need her
+   sign-off:
+   - `about/`: the second paragraph ("the companies that struggled rarely failed
+     on the product…"), and the photo note "usually outside, if I can be".
+   - `still-life/`: the hero line, the Authentic Relating description, the
+     meditation heading, and the one-line essay summaries.
+   - `index.html`: the contact line "I read every note."
+3. **Medium.** Featured essays all come from The Steph Press on WordPress.
+   Medium posts were not reviewed.
 
 ---
 
-## Pointing a custom domain at it
+## Moving to stephanieshyu.com
 
-1. Repo **Settings → Pages → Custom domain**, enter e.g. `advisory.sjscollective.com`
-2. At the DNS registrar, add:
+`stephanieshyu.com` may currently point at the WordPress blog (some posts link to
+`stephanieshyu.com/2021/...`). Check before switching, or those essay links break.
+If it does, map the blog to a subdomain such as `writing.stephanieshyu.com` in
+WordPress first, then:
 
-   | Type  | Name       | Value                       |
-   |-------|------------|-----------------------------|
-   | CNAME | `advisory` | `applesandgrits.github.io`  |
-
-3. Tick **Enforce HTTPS** once the certificate is issued (usually minutes).
+1. Repo **Settings → Pages → Custom domain**: enter `stephanieshyu.com`.
+2. At the DNS registrar, point the apex at GitHub Pages (four `A` records:
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`)
+   and add `CNAME www → applesandgrits.github.io`.
+3. Tick **Enforce HTTPS** once the certificate is issued.
 4. Find-and-replace `https://applesandgrits.github.io/sjs-founder-advisory` with
-   the new origin across `index.html`, `robots.txt` and `sitemap.xml` — those carry
-   the absolute canonical and social-preview URLs.
+   `https://stephanieshyu.com` in every `.html` file, `robots.txt` and
+   `sitemap.xml` (canonical URLs, social previews, structured data).
+5. Redirect `sjscollective.com` and `thesjscollective.com` to
+   `https://stephanieshyu.com/` at their registrar, and `stephshyu.yoga` to
+   `https://stephanieshyu.com/still-life/` until it lapses.
+6. Update the ART facilitator directory listing to link to stephanieshyu.com.
 
 ---
 
@@ -39,29 +62,35 @@ it with the real address, or swap the whole `<a>` for a Calendly / Tally link.
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The entire site — markup with inline styles |
-| `404.html` | Not-found page |
-| `photos/` | Panel, auditorium and portrait shots used in the hero, sessions band and About |
+| `index.html`, `advisory/`, `still-life/`, `about/` | The four pages |
+| `assets/site.css` | Shared design system: tokens, three themes, components |
+| `fonts.css` + `fonts/` | Self-hosted Newsreader, Archivo, IBM Plex Mono, La Belle Aurore |
+| `photos/` | Portraits and event photos (owned by Steph) |
 | `logos/` | NYU Stern Berkley Center, AdmitSee, Pioneer Fund, The SJS Collective |
-| `og.png` | 1200×630 link-preview card for LinkedIn, Slack, iMessage |
-| `fonts.css` + `fonts/` | Self-hosted Newsreader, Archivo, IBM Plex Mono (latin subsets) |
-| `favicon.svg` | Tab icon: two lines converging into one |
+| `og-home.png`, `og.png`, `og-still-life.png` | 1200×630 link previews for home, Advisory, Still Life |
+| `favicon.svg` | Tab icon |
+| `404.html` | Not-found page; sets its own base so it works at any depth |
 | `robots.txt`, `sitemap.xml` | Search indexing |
-| `.nojekyll` | Tells Pages to serve files as-is, no Jekyll processing |
+| `.nojekyll` | Tells Pages to serve files as-is |
 
-The three main faces are self-hosted. Architects Daughter — used for the
-handwritten annotation accents — is the one font still loaded from Google Fonts,
-and so the page's only third-party request.
+The advisory page still carries its original inline styles, recoloured to plum.
+It loads `assets/site.css` only for the slim family bar at the top. Moving its
+markup onto the shared classes is a good follow-up.
 
-## Design notes
+## Design system
 
-- **Palette** — warm paper `#F7F3ED`, near-black ink `#16130F`, rust accent
-  `#B03A13` with `#8F2F0E` for text-safe links, sand surfaces `#EAE3D7` / `#EDE6DB`.
-  Single light theme by design (`color-scheme: light`); there is no dark palette.
-- **Type** — Newsreader (display), Archivo (body and UI), IBM Plex Mono (labels,
-  session numbers, rates), Architects Daughter (annotations).
-- **Structure** — the session numbering is real sequence, not decoration: each
-  working session depends on what the previous one settled. The prework worksheets
-  are deliberately unnumbered, since founders answer them in any order.
+- **Base (every page):** paper `#F7F3ED`, ink `#16130F`, rule `#E2DACE`, sand `#EDE6DB`.
+- **Advisory:** plum `#74325C`, text-safe `#5F2849`, tint `#EEDFE7`. Precise, upright
+  Newsreader, 4px corners.
+- **Still Life:** moss `#4B5B34`, text-safe `#3C4A2A`, tint `#E3E6D6`, paper
+  `#F5F3EA`. Italic Newsreader, round pills, more space.
+- **Home and About:** ink only, so neither half dominates.
+- **Type:** Newsreader (display), Archivo (body), IBM Plex Mono (labels and facts),
+  La Belle Aurore (one handwritten margin note per screen).
+- **Photos:** natural light, subject to one side, no text over faces. The studio
+  portrait stays on the Advisory side.
+- **Naming:** "Steph Shyu" everywhere visible; "Stephanie Shyu" in page titles and
+  structured data so search connects the two.
 
-Session content and pricing come from the Founder Clarity Sprint proposal.
+The brand sheet with the full rationale is a separate published page, not part
+of this repo.
